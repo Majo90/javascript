@@ -1,20 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reserva de Cancha</title>
+    <link rel="stylesheet" href="styless.css">
+
 </head>
 
 <body>
-    <h1>Futbolito</h1>
 
-    <h2>Alquila la cancha que mas te guste para disfrutar con tus amigos</h2>
+    <h1>ACTIVANDO</h1>
+
+    <h2>Reserva y disfruta con tus amigos</h2>
+
+    <h3>Formulario de Reserva de Canchas</h3>
+
+    <!-- Formulario para capturar los datos de la reserva -->
+    <form id="formulario-reserva" onsubmit="submitForm(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required><br><br>
+
+        <label for="participantes">Cantidad de Participantes:</label>
+        <input type="number" id="participantes" name="participantes" required><br><br>
+
+        <label for="horario">Horario:</label>
+        <select id="horario" name="horario" required>
+            <option value="Mañana - 08:00">Mañana - 08:00</option>
+            <option value="Mañana - 9:00">Mañana - 9:00</option>
+            <option value="Mañana - 10:00">Mañana - 10:00</option>
+            <option value="Mañana - 11:00">Mañana - 11:00</option>
+            <option value="Tarde - 16:00">Tarde - 16:00</option>
+            <option value="Tarde - 17:00">Tarde - 17:00</option>
+            <option value="Tarde - 18:00">Tarde - 18:00</option>
+            <option value="Tarde - 19:00">Tarde - 19:00</option>
+            <option value="Noche - 20:00">Noche - 20:00</option>
+            <option value="Noche - 21:00">Noche - 21:00</option>
+            <option value="Noche - 22:00">Noche - 22:00</option>
+            <option value="Noche - 23:00">Noche - 23:00</option>
+        </select><br><br>
+
+        <label for="pago">Forma de Pago:</label>
+        <select id="pago" name="pago" required>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta de credito">Tarjeta de crédito</option>
+            <option value="APPS">APPS</option>
+            <option value="Transferencias">Transferencias</option>
+        </select><br><br>
+
+        <label for="cancha">Cancha:</label>
+        <select id="cancha" name="cancha" required>
+            <option value="Voley - $8000">Voley - $8000</option>
+            <option value="Futbol - $8000">Futbol - $8000</option>
+            <option value="Tenis - $8000">Tenis - $8000</option>
+            <option value="Basquet - $8000">Basquet - $8000</option>
+            <option value="Padel - $8000">Padel - $8000</option>
+        </select><br><br>
 
 
-    <script src="./app.js"></script>
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <input type="submit" value="Reservar">
+    </form>
+
+    <!-- Div donde se mostrará el resultado del formulario -->
+    <div id="resultado"></div>
+
+    <script src="app.js"></script>
+
 </body>
 
 </html>
