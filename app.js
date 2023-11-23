@@ -15,7 +15,6 @@ const formulario = {
     }
 }
 
-
 // Función para guardar los datos en localStorage
 function guardarDatos() {
     localStorage.setItem('datosFormulario', JSON.stringify(formulario));
@@ -29,6 +28,32 @@ function cargarDatos() {
     }
 }
 
+// Función para cargar datos desde un archivo JSON local
+function cargarDatosIniciales() {
+    fetch('formulario.json')
+        .then(response => response.json())
+        .then(datos => {
+            Object.assign(formulario, datos);
+            mostrarDatos();
+        })
+        .catch(error => console.error('Error al cargar datos:', error));
+}
+
+// Función para enviar los datos de reserva
+function enviarReserva() {
+    axios.post('https://api.miservidor.com/reservas', formulario)
+        .then(response => {
+            console.log('Reserva enviada con éxito:', response.data);
+            Swal.fire({
+                title: '¡Reserva Exitosa!',
+                text: 'Tu reserva ha sido enviada con éxito.',
+                icon: 'success'
+            });
+        })
+}
+
+
+// Función de manejo del envío del formulario
 function submitForm(e) {
     e.preventDefault();
 
@@ -50,8 +75,12 @@ function submitForm(e) {
 
     // Guarda los datos en el almacenamiento local
     guardarDatos();
+
+    // Envía los datos de la reserva
+    enviarReserva();
 }
 
+// Funcion para mostrar los datos en el HTML
 function mostrarDatos() {
     let output = "Datos del formulario completados:<br>";
     for (let clave in formulario) {
@@ -64,5 +93,14 @@ function mostrarDatos() {
     document.getElementById('resultado').innerHTML = output;
 }
 
-// Carga los datos almacenados cuando la página se carga
-window.onload = cargarDatos;
+// Cargar los datos almacenados y los datos iniciales cuando la página se carga
+window.onload = function () {
+    cargarDatos();
+    cargarDatosIniciales();
+};
+
+Swal.fire({
+    title: "ACTIVANDO!",
+    text: "Bienvenidos, los estabamos esperando!",
+    icon: "success"
+});
